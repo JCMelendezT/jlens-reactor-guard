@@ -1,0 +1,19 @@
+# J-lens reactor guard — pinned, reproducible environment.
+# Tested on: Python 3.11.9 + CUDA 12.8 (RTX 4060 Laptop 8 GB / RTX 8000 42 GB class).
+# Install: see scripts/setup.sh (Linux/cluster) or scripts/setup.ps1 (Windows).
+
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+torch==2.11.0+cu128
+torchvision
+torchaudio
+transformers==5.16.1
+accelerate==1.14.0
+huggingface_hub==1.30.0
+numpy==2.4.6
+safetensors==0.8.0
+tokenizers==0.23.2
+datasets==5.0.1
+tqdm==4.70.0
+# jlens is NOT on PyPI; install from source at the exact commit used here:
+# git+https://github.com/anthropics/jacobian-lens@581d398613e5602a5af361e1c34d3a92ea82ba8e

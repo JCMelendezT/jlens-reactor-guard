@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Model artifacts (regenerate with fit_lens.py; never commit weights)
+artifacts/
+*.pt
+*.ckpt
+lens_fit_ckpt.pt
+
+# Hugging Face cache
+.cache/huggingface/
+
+# Logs / scratch
+*.log
+*.tmp
+.DS_Store
