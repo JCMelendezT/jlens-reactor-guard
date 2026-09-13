@@ -45,6 +45,7 @@ class ReActAgent:
         max_new_tokens: int = 64,
         temperature: float = 0.3,
         top_p: float = 0.9,
+        report_commit_enabled: bool = True,
     ) -> None:
         self.model = model
         self.tokenizer = tokenizer
@@ -54,6 +55,7 @@ class ReActAgent:
         self.max_new_tokens = max_new_tokens
         self.temperature = temperature
         self.top_p = top_p
+        self.report_commit_enabled = report_commit_enabled
         self._hf = model._hf_model
 
     # -- prompt plumbing -------------------------------------------
@@ -135,7 +137,8 @@ class ReActAgent:
             #    conceal an active anomaly is blocked BEFORE its content
             #    materializes or reaches the sandbox.
             if (
-                first_report_pending
+                self.report_commit_enabled
+                and first_report_pending
                 and action
                 and action.lower().startswith("report")
             ):

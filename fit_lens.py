@@ -148,7 +148,7 @@ def main() -> None:
     print(f"[3/3] Fitting lens (dim_batch={args.dim_batch}, "
           f"max_seq_len={args.max_seq_len})...")
     import os
-    os.makedirs(ARTIFACTS_DIR, exist_ok=True)
+    os.makedirs(os.path.dirname(CKPT_PATH), exist_ok=True)
     t0 = time.time()
     lens = jlens.fit(
         model,
@@ -162,7 +162,7 @@ def main() -> None:
     elapsed = time.time() - t0
 
     import os
-    os.makedirs(ARTIFACTS_DIR, exist_ok=True)
+    os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
     lens.save(OUT_PATH)
     print(f"      done in {elapsed/60:.1f} min  ({lens.n_prompts} prompts)")
     print(f"Saved lens -> {OUT_PATH}")
