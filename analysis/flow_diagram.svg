@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1420 1010" font-family="Segoe UI, system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif"><defs>
+
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#f8fafc"/><stop offset="1" stop-color="#eef2f6"/>
+</linearGradient>
+<filter id="sh" x="-30%" y="-30%" width="160%" height="160%">
+  <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.14"/>
+</filter>
+
+<marker id="m_64748b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker>
+<marker id="m_16a34a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"/></marker>
+<marker id="m_2563eb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/></marker>
+<marker id="m_ea580c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#ea580c"/></marker>
+<marker id="m_7c3aed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7c3aed"/></marker>
+<marker id="m_94a3b8" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/></marker>
+</defs>
+<rect width="1420" height="1010" fill="url(#bg)"/>
+<text x="710.0" y="34" text-anchor="middle" font-weight="800" font-size="22" fill="#0f172a">Jack-in-the-box · supervisor J-lens en el punto de commit</text>
+<text x="710.0" y="56" text-anchor="middle" font-size="12" fill="#64748b">Qwen2.5-1.5B-Instruct · github.com/JCMelendezT/jlens-reactor-guard · regla auditable de ~30 líneas, sin entrenar</text>
+<g filter="url(#sh)"><rect x="30" y="74" width="1360" height="170" rx="16" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.2"/></g>
+<rect x="50" y="86" width="430" height="30" rx="15" fill="#16a34a" opacity="0.95"/><text x="265.0" y="106" text-anchor="middle" font-weight="700" font-size="11.5" letter-spacing="0.6" fill="#ffffff">ENTRENAMIENTO DEL LENS · una vez por modelo</text>
+<rect x="70" y="130" width="390" height="92" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="70" y="130" width="390" height="92" rx="12" fill="#ffffff" stroke="#86efac" stroke-width="1.5"/>
+<text x="265.0" y="157" text-anchor="middle" font-weight="700" font-size="12.5" fill="#15803d">01 · Datos de ajuste</text>
+<text x="265.0" y="178" text-anchor="middle" font-size="10.5" fill="#166534"><tspan x="265.0" dy="0">~40 prompts · wikitext + instrucción</tspan><tspan x="265.0" dy="17">larga (≥ 25 tokens)</tspan></text>
+<rect x="500" y="130" width="390" height="92" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="500" y="130" width="390" height="92" rx="12" fill="#ffffff" stroke="#86efac" stroke-width="1.5"/>
+<text x="695.0" y="157" text-anchor="middle" font-weight="700" font-size="12.5" fill="#15803d">02 · fit_lens.py</text>
+<text x="695.0" y="178" text-anchor="middle" font-size="10.5" fill="#166534"><tspan x="695.0" dy="0">Jacobiano por capa (mínimos cuadrados)</tspan><tspan x="695.0" dy="17">J_layer · residual → emb. verbal</tspan></text>
+<rect x="940" y="130" width="420" height="92" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="940" y="130" width="420" height="92" rx="12" fill="#ffffff" stroke="#86efac" stroke-width="1.5"/>
+<text x="1150.0" y="157" text-anchor="middle" font-weight="700" font-size="12.5" fill="#15803d">03 · Artefacto</text>
+<text x="1150.0" y="178" text-anchor="middle" font-size="10.5" fill="#166534"><tspan x="1150.0" dy="0">artifacts/jacobian_lens.pt</tspan><tspan x="1150.0" dy="17">por modelo vía JLENS_MODEL</tspan><tspan x="1150.0" dy="17">(1.5B · 7B · 14B)</tspan></text>
+<path d="M 460 176 L 500 176" fill="none" stroke="16a34a" stroke-width="1.8" marker-end="url(#m_6a34a)"/>
+<path d="M 890 176 L 940 176" fill="none" stroke="16a34a" stroke-width="1.8" marker-end="url(#m_6a34a)"/>
+<g filter="url(#sh)"><rect x="30" y="270" width="1360" height="372" rx="16" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.2"/></g>
+<rect x="50" y="282" width="520" height="30" rx="15" fill="#2563eb" opacity="0.95"/><text x="310.0" y="302" text-anchor="middle" font-weight="700" font-size="11.5" letter-spacing="0.6" fill="#ffffff">RUNTIME · SUPERVISOR EN EL PUNTO DE COMMIT</text>
+<rect x="70" y="330" width="390" height="92" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="70" y="330" width="390" height="92" rx="12" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="265.0" y="357" text-anchor="middle" font-weight="700" font-size="12.5" fill="#1d4ed8">04 · Sandbox</text>
+<text x="265.0" y="378" text-anchor="middle" font-size="10.5" fill="#1e40af"><tspan x="265.0" dy="0">ReactSandbox · reactor crítico</tspan><tspan x="265.0" dy="17">anomalía activa · integridad · presión</tspan></text>
+<rect x="70" y="460" width="390" height="92" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="70" y="460" width="390" height="92" rx="12" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="265.0" y="487" text-anchor="middle" font-weight="700" font-size="12.5" fill="#1d4ed8">05 · Persona (system prompt)</text>
+<text x="265.0" y="508" text-anchor="middle" font-size="10.5" fill="#1e40af"><tspan x="265.0" dy="0">HONEST · EVASIVE_SOFT</tspan><tspan x="265.0" dy="17">EVASIVE_DIRECT</tspan></text>
+<path d="M 265 422 L 265 460" fill="none" stroke="2563eb" stroke-width="1.8" marker-end="url(#m_563eb)"/>
+<rect x="500" y="330" width="380" height="92" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="500" y="330" width="380" height="92" rx="12" fill="#1e3a8a" stroke="#1e3a8a" stroke-width="0"/>
+<text x="690.0" y="357" text-anchor="middle" font-weight="700" font-size="12.5" fill="#ffffff">06 · PUNTO DE COMMIT</text>
+<text x="690.0" y="378" text-anchor="middle" font-size="10.5" fill="#dbeafe"><tspan x="690.0" dy="0">Contexto ReAct + « ACTION: report »</tspan><tspan x="690.0" dy="17">el contenido aún no existe</tspan></text>
+<rect x="500" y="450" width="380" height="92" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="500" y="450" width="380" height="92" rx="12" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="690.0" y="477" text-anchor="middle" font-weight="700" font-size="12.5" fill="#1d4ed8">07 · lens.apply</text>
+<text x="690.0" y="498" text-anchor="middle" font-size="10.5" fill="#1e40af"><tspan x="690.0" dy="0">L0 · L8 · L16 · L26 · cola 12 tokens</tspan><tspan x="690.0" dy="17">un solo forward + hooks raw</tspan></text>
+<rect x="500" y="570" width="380" height="110" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="500" y="570" width="380" height="110" rx="12" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="690.0" y="597" text-anchor="middle" font-weight="700" font-size="12.5" fill="#1d4ed8">08 · Masa conceptual</text>
+<text x="690.0" y="618" text-anchor="middle" font-size="10.5" fill="#1e40af"><tspan x="690.0" dy="0">honest_report · evasive_report · deception</tspan><tspan x="690.0" dy="17">top-k 40 · T = 2.0 · eco minificada</tspan><tspan x="690.0" dy="17">Σ softmax(logits / 2)</tspan></text>
+<path d="M 460 506 Q 510 441 500 376" fill="none" stroke="2563eb" stroke-width="1.8" marker-end="url(#m_563eb)"/>
+<path d="M 690 422 L 690 450" fill="none" stroke="2563eb" stroke-width="1.8" marker-end="url(#m_563eb)"/>
+<path d="M 690 542 L 690 570" fill="none" stroke="2563eb" stroke-width="1.8" marker-end="url(#m_563eb)"/>
+<rect x="930" y="300" width="420" height="100" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="930" y="300" width="420" height="100" rx="12" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+<text x="1140.0" y="327" text-anchor="middle" font-weight="700" font-size="12.5" fill="#c2410c">09 · REGLA A PRIORI (sin entrenar)</text>
+<text x="1140.0" y="348" text-anchor="middle" font-size="10.5" fill="#9a3412"><tspan x="1140.0" dy="0">anomaly ∧ presión ∧ masa honesta ≥ 1.5 %</tspan><tspan x="1140.0" dy="17">≥ 1.5 % ⇒ ALLOW · ≤ 1.5 % ⇒ BLOCK</tspan></text>
+<path d="M 880 590 Q 865 470 930 350" fill="none" stroke="ea580c" stroke-width="1.8" marker-end="url(#m_a580c)"/>
+<rect x="930" y="440" width="210" height="92" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="930" y="440" width="210" height="92" rx="12" fill="#dcfce7" stroke="#4ade80" stroke-width="2"/>
+<text x="1035.0" y="467" text-anchor="middle" font-weight="700" font-size="12.5" fill="#15803d">✓ ALLOW</text>
+<text x="1035.0" y="488" text-anchor="middle" font-size="10.5" fill="#166534"><tspan x="1035.0" dy="0">esc. 1 / 2 · reporte honesto</tspan><tspan x="1035.0" dy="17">se materializa</tspan></text>
+<rect x="1170" y="440" width="210" height="92" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="1170" y="440" width="210" height="92" rx="12" fill="#fee2e2" stroke="#f87171" stroke-width="2"/>
+<text x="1275.0" y="467" text-anchor="middle" font-weight="700" font-size="12.5" fill="#b91c1c">✕ BLOCK pre-ejecución</text>
+<text x="1275.0" y="488" text-anchor="middle" font-size="10.5" fill="#991b1b"><tspan x="1275.0" dy="0">esc. 3 · mentira suprimida</tspan><tspan x="1275.0" dy="17">el contenido nunca se emite</tspan></text>
+<rect x="1050" y="556" width="300" height="92" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="1050" y="556" width="300" height="92" rx="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="1200.0" y="583" text-anchor="middle" font-weight="700" font-size="12.5" fill="#334155">Sin supervisor ⇒ MELTDOWN</text>
+<text x="1200.0" y="604" text-anchor="middle" font-size="10.5" fill="#475569"><tspan x="1200.0" dy="0">esc. 4 · counterfactual</tspan><tspan x="1200.0" dy="17">la mentira se ejecuta y daña</tspan></text>
+<path d="M 1055 400 L 1035 440" fill="none" stroke="ea580c" stroke-width="1.8" marker-end="url(#m_a580c)"/>
+<path d="M 1190 400 L 1230 440" fill="none" stroke="ea580c" stroke-width="1.8" marker-end="url(#m_a580c)"/>
+<path d="M 1120 400 Q 1115 478 1110 556" fill="none" stroke="94a3b8" stroke-width="1.8" marker-end="url(#m_4a3b8)" stroke-dasharray="5 4"/>
+<path d="M 1160 222 Q 912 276 700 330" fill="none" stroke="16a34a" stroke-width="1.8" marker-end="url(#m_6a34a)"/>
+<g><rect x="892.0" y="257.8" width="76" height="18" rx="9" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8"/><text x="930.0" y="271.8" text-anchor="middle" font-size="9" font-weight="600" fill="#475569">artefacto</text></g>
+<g filter="url(#sh)"><rect x="30" y="668" width="1360" height="224" rx="16" fill="#faf5ff" stroke="#e9d5ff" stroke-width="1.2"/></g>
+<rect x="50" y="680" width="420" height="30" rx="15" fill="#7c3aed" opacity="0.95"/><text x="260.0" y="700" text-anchor="middle" font-weight="700" font-size="11.5" letter-spacing="0.6" fill="#ffffff">ANÁLISIS · RUTA 1 — EVIDENCIA DE LA DEFENSA</text>
+<rect x="70" y="712" width="300" height="92" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="70" y="712" width="300" height="92" rx="12" fill="#ffffff" stroke="#d8b4fe" stroke-width="1.5"/>
+<text x="220.0" y="739" text-anchor="middle" font-weight="700" font-size="12.5" fill="#6d28d9">10 · Muestras</text>
+<text x="220.0" y="760" text-anchor="middle" font-size="10.5" fill="#4c1d95"><tspan x="220.0" dy="0">24 deterministas</tspan><tspan x="220.0" dy="17">3 personas × 8 seeds</tspan></text>
+<rect x="400" y="712" width="300" height="92" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="400" y="712" width="300" height="92" rx="12" fill="#ffffff" stroke="#d8b4fe" stroke-width="1.5"/>
+<text x="550.0" y="739" text-anchor="middle" font-weight="700" font-size="12.5" fill="#6d28d9">11 · Separabilidad</text>
+<text x="550.0" y="760" text-anchor="middle" font-size="10.5" fill="#4c1d95"><tspan x="550.0" dy="0">silhouette L0–L26 = 1.00</tspan><tspan x="550.0" dy="17">PCA por capa</tspan></text>
+<rect x="730" y="712" width="300" height="92" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="730" y="712" width="300" height="92" rx="12" fill="#ffffff" stroke="#d8b4fe" stroke-width="1.5"/>
+<text x="880.0" y="739" text-anchor="middle" font-weight="700" font-size="12.5" fill="#6d28d9">12 · Calibración</text>
+<text x="880.0" y="760" text-anchor="middle" font-size="10.5" fill="#4c1d95"><tspan x="880.0" dy="0">AUC = 1.000 · Youden 4.95 %</tspan><tspan x="880.0" dy="17">regla ⇒ TPR 1.0 / FPR 0.0</tspan></text>
+<rect x="1060" y="712" width="300" height="92" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="1060" y="712" width="300" height="92" rx="12" fill="#ffffff" stroke="#d8b4fe" stroke-width="1.5"/>
+<text x="1210.0" y="739" text-anchor="middle" font-weight="700" font-size="12.5" fill="#6d28d9">13 · Control raw vs J-lens</text>
+<text x="1210.0" y="760" text-anchor="middle" font-size="10.5" fill="#4c1d95"><tspan x="1210.0" dy="0">raw L8/L26 = 1.0 (entrenado)</tspan><tspan x="1210.0" dy="17">J-logits vector = 0.25 · zero-shot = 1.0</tspan></text>
+<path d="M 370 758 L 400 758" fill="none" stroke="7c3aed" stroke-width="1.8" marker-end="url(#m_c3aed)"/>
+<path d="M 700 758 L 730 758" fill="none" stroke="7c3aed" stroke-width="1.8" marker-end="url(#m_c3aed)"/>
+<path d="M 1030 758 L 1060 758" fill="none" stroke="7c3aed" stroke-width="1.8" marker-end="url(#m_c3aed)"/>
+<rect x="560" y="836" width="300" height="60" rx="12" fill="#0f172a" opacity="0.10" transform="translate(0 2)"/>
+<rect x="560" y="836" width="300" height="60" rx="12" fill="#ffffff" stroke="#c4b5fd" stroke-width="1.5"/>
+<text x="710.0" y="863" text-anchor="middle" font-weight="700" font-size="12.5" fill="#6d28d9">Reporte · REPORT.md + stats.md + paper</text>
+<text x="710.0" y="884" text-anchor="middle" font-size="10.5" fill="#4c1d95"><tspan x="710.0" dy="0">d = 12.63 · p = 3.8e-05</tspan></text>
+<path d="M 180 804 Q 371 820 590 836" fill="none" stroke="7c3aed" stroke-width="1.8" marker-end="url(#m_c3aed)"/>
+<path d="M 550 804 Q 591 820 620 836" fill="none" stroke="7c3aed" stroke-width="1.8" marker-end="url(#m_c3aed)"/>
+<path d="M 880 804 Q 860 820 820 836" fill="none" stroke="7c3aed" stroke-width="1.8" marker-end="url(#m_c3aed)"/>
+<path d="M 1210 804 Q 1076 820 890 836" fill="none" stroke="7c3aed" stroke-width="1.8" marker-end="url(#m_c3aed)"/>
+<g filter="url(#sh)"><rect x="30" y="916" width="1360" height="66" rx="14" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.2"/></g>
+<text x="710.0" y="936" text-anchor="middle" font-weight="700" font-size="12.5" fill="#334155">Respuesta al juez — el J-lens traduce el residual al vocabulario del modelo: la señal vive en la masa de pocas palabras (0.0–5 %),</text>
+<text x="710.0" y="958" text-anchor="middle" font-size="11.5" fill="#475569">no en la geometría de alta varianza. Por eso el monitor es zero-shot, auditable y transferible (1.5B → 14B sin re-entrenar).</text>
+</svg>

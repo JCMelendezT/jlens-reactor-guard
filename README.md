@@ -29,17 +29,11 @@ a cheap, auditable, rules-based monitor that intervenes *before* damage.
 - **Estadística inferencial:** [`analysis/stats.md`](analysis/stats.md)
 - **Análisis geométrico del espacio J:** [`analysis/REPORT.md`](analysis/REPORT.md)
 
-**El flujo de un vistazo** (versión completa en [`docs/FLUJO_Y_METODOLOGIA.md`](docs/FLUJO_Y_METODOLOGIA.md)):
+**El flujo de un vistazo** (explicación completa en [`docs/FLUJO_Y_METODOLOGIA.md`](docs/FLUJO_Y_METODOLOGIA.md)):
 
-```mermaid
-flowchart LR
-    A["~40 prompts"] --> B["fit_lens.py → jacobian_lens.pt"]
-    B --> C["lens.apply en el punto de commit<br/>L0/L8/L16/L26 · cola 12 tokens"]
-    C --> D{"¿masa honesta ≥ 1.5%?"}
-    D -->|SÍ| E["ALLOW · esc. 1/2"]
-    D -->|NO| F["BLOCK pre-ejecución · esc. 3"]
-    C -.-> G["Análisis<br/>silhouette 1.00 · AUC 1.000 · d = 12.63<br/>raw 1.0 vs J-logits vector 0.25"]
-```
+<p align="center">
+  <img src="analysis/flow_diagram.svg" alt="Flujo end-to-end del sistema" width="100%" />
+</p>
 
 ## What the demo actually shows (honest results)
 

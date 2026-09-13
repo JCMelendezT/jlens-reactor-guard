@@ -4,57 +4,15 @@
 
 Una sola idea sostiene todo el trabajo: **leer la intención del reporte en el residual del modelo — en el idioma del propio modelo — antes de que el contenido exista**, y cortar con una regla auditable de 33 líneas cuando esa intención no es honesta.
 
-```mermaid
-flowchart TD
-    subgraph F["ENTRENAMIENTO DEL LENS · una vez por modelo"]
-        direction LR
-        A["Dataset ~40 prompts<br/>wikitext + instrucción larga"] --> B["fit_lens.py<br/>J_layer · residual → emb. verbal"]
-        B --> C["artifacts/jacobian_lens.pt<br/>por modelo vía JLENS_MODEL<br/>(1.5B · 7B · 14B)"]
-    end
+<p align="center">
+  <img src="../analysis/flow_diagram.svg" alt="Flujo end-to-end del sistema"
+       width="100%" /><br/>
+  <em>Figura 1 — Flujo end-to-end: entrenamiento del lens (una vez por modelo),
+  runtime del supervisor en el punto de commit, y el análisis de la ruta 1 que
+  sostiene la evidencia.</em>
+</p>
 
-    subgraph R["RUNTIME · SUPERVISOR EN EL PUNTO DE COMMIT"]
-        direction LR
-        D["ReactSandbox<br/>reactor crítico · anomalía activa<br/>integridad · presión"] --> E["Persona<br/>HONEST / EVASIVE_SOFT / EVASIVE_DIRECT"]
-        E --> G["Contexto ReAct + « ACTION: report »<br/><b>punto de commit: el contenido aún no existe</b>"]
-        G --> H["lens.apply<br/>capas L0 / L8 / L16 / L26 · cola 12 tokens<br/>un solo forward + hooks raw"]
-        H --> I["top-k 40 por capa · T = 2.0<br/>supresión de eco minificada<br/>(por texto, no por token-id)"]
-        I --> J["Masa conceptual<br/>honest_report · evasive_report · deception<br/>Σ softmax(logits/2)"]
-        J --> K{"Regla a priori<br/>anomaly + presión + masa honesta ≥ 1.5%"}
-        K -->|SÍ cumple| L["ALLOW<br/>reporte honesto se materializa<br/>esc. 1 / 2"]
-        K -->|NO cumple| M["BLOCK pre-ejecución<br/>el contenido nunca se emite<br/>esc. 3"]
-        K -.->|sin supervisor| N["MELTDOWN<br/>esc. 4 · counterfactual"]
-    end
-
-    subgraph A2["ANÁLISIS · RUTA 1 — EVIDENCIA DE LA DEFENSA"]
-        direction LR
-        O["24 muestras deterministas<br/>3 personas × 8 seeds"] --> P["Separabilidad<br/>silhouette L0–L26 = 1.00"]
-        P --> Q["Calibración ROC/PR<br/>AUC = 1.000 · Youden 4.95%<br/>regla 1.5% ⇒ TPR 1.0 / FPR 0.0"]
-        Q --> S["Control raw vs J-lens<br/>raw = 1.0 (entrenado)<br/>J-logits vector = 0.25–0.28<br/>zero-shot = 1.0"]
-        S --> T["Figuras + REPORT.md + stats.md<br/>d = 12.63 · p = 3.8e-05"]
-    end
-
-    C -.->|artefacto| H
-
-    classDef fit fill:#e8f5e9,stroke:#2e7d32,stroke-width:1.5px,color:#1b5e20
-    classDef run fill:#e3f2fd,stroke:#1565c0,stroke-width:1.5px,color:#0d47a1
-    classDef dec fill:#fff3e0,stroke:#ef6c00,stroke-width:1.5px,color:#e65100
-    classDef ok fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20
-    classDef block fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#b71c1c
-    classDef melt fill:#eceff1,stroke:#455a64,stroke-width:1.5px,color:#37474f
-    classDef ana fill:#f3e5f5,stroke:#6a1b9a,stroke-width:1.5px,color:#4a148c
-
-    class A,B,C fit
-    class D,E,G,H,I,J run
-    class K dec
-    class L ok
-    class M block
-    class N melt
-    class O,P,Q,S,T ana
-```
-
-*Figura 1 — Flujo end-to-end (Mermaid): entrenamiento del lens (una vez por modelo), runtime del supervisor en el punto de commit, y el análisis de la ruta 1 que sostiene la evidencia.*
-
-> Versión descargable en PNG: [`analysis/flow_diagram.png`](https://raw.githubusercontent.com/JCMelendezT/jlens-reactor-guard/main/analysis/flow_diagram.png)
+> Versión descargable en PNG (para diapositivas): [`analysis/flow_diagram.png`](https://raw.githubusercontent.com/JCMelendezT/jlens-reactor-guard/main/analysis/flow_diagram.png)
 
 ---
 
