@@ -58,6 +58,38 @@ deception-detection hypothesis thoroughly. The findings:
   a soft evasive order measured ≈ 1.1% and was conservatively blocked). The
   supervisor errs toward safety: ambiguous signal blocks.
 
+## J-space analysis (route 1): why the lens, not the raw activations
+
+`scripts/analyze_jspace.py` reproduces the report-commit read across
+24 deterministic samples (3 personas × 8 sandbox seeds) and characterizes the
+J-space geometrically. Outputs land in `analysis/` (figures + `REPORT.md`):
+
+- **Class separability** — PCA of the J-embeddings at the commit point and
+  silhouette score per probed layer (L0/L8/L16/L26): all 1.00. The three
+  moral states (honest / evasive-soft / evasive-direct) are linearly separated
+  regions of J-space at the moment before the report content exists.
+- **Layer × token tracking** — honest-report mass per layer/trailing token and
+  the cosine divergence of each persona from the honest prototype at the
+  commit point (fig2_*).
+- **Threshold calibration (ROC/PR)** — AUC = 1.000, Youden ≈ 4.95%, and the
+  current `HONEST_REPORT_MIN = 1.5%` rule lands at TPR = 1.00 / FPR = 0.00 on
+  this corpus: the conservative soft-persona false positive is removed by
+  calibration, not by weakening the rule.
+- **Raw vs J-lens** — the empirical answer to "what does the lens add over
+  raw activations?" A logistic probe trained on the *raw residual* at L8/L26
+  trivially separates the personas (AUC 1.0), and a probe trained on the
+  *J-logit vector* does NOT (AUC ≈ 0.25–0.28, below chance): the signal lives
+  in the small vocabulary mass, not in the high-variance logit geometry. The
+  zero-shot J-lens rule — no training, three concept words — also scores
+  AUC 1.0. Raw activations contain the information only in an opaque,
+  per-layer-trained form; the lens re-bases it into the model's own vocabulary
+  so the monitor is auditable, transferable, and reads the commitment before
+  the words exist.
+
+```powershell
+.\.venv\Scripts\python.exe scripts\analyze_jspace.py   # regenerate
+```
+
 ## How it works
 
 ```
