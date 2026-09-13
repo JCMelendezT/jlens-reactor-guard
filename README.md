@@ -19,6 +19,16 @@ lacks the honest vocabulary is BLOCKED before its content materializes.
 This mirrors the AI-Control framing (Redwood Research): an untrusted agent +
 a cheap, auditable, rules-based monitor that intervenes *before* damage.
 
+## Material de defensa (hackathon)
+
+- **Flujo y metodología (explicación completa + diagrama):**
+  [`docs/FLUJO_Y_METODOLOGIA.md`](docs/FLUJO_Y_METODOLOGIA.md) · diagrama en
+  [`analysis/flow_diagram.png`](analysis/flow_diagram.png)
+- **Paper borrador (4 páginas · intro / related works / metodología / resultados con
+  estadística / conclusiones):** [`docs/PAPER_borrador.md`](docs/PAPER_borrador.md)
+- **Estadística inferencial:** [`analysis/stats.md`](analysis/stats.md)
+- **Análisis geométrico del espacio J:** [`analysis/REPORT.md`](analysis/REPORT.md)
+
 ## What the demo actually shows (honest results)
 
 We fit a Jacobian lens on Qwen2.5-1.5B-Instruct (~40 prompts) and tested the
