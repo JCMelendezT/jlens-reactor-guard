@@ -183,6 +183,7 @@ def collect(model, tok, lens, n_seeds: int):
                 "layers": layers,
                 "positions": positions,
                 "mass_grid": mass_grid,
+                "masses_by_layer": {l: masses[l] for l in layers},
                 "j_logits": {
                     l: lens_logits[l][pos_last].detach().float().cpu().numpy()
                     for l in layers
@@ -574,6 +575,21 @@ def main() -> None:
         "(anomaly_active + pressure_gate activados, como en escenario 2/3).",
     ]
     write_report(samples, sil, calib, (raw_res, zs), notes, f"{OUT_DIR}/REPORT.md")
+
+    # persist per-sample metrics for downstream statistics (no big vectors)
+    import json
+    metrics = [{
+        "class": s["class"], "seed": s["seed"], "verdict": s["verdict"],
+        "honest": s["honest"], "evasive": s["evasive"], "deceptive": s["deceptive"],
+        "masses_by_layer": {str(l): s["masses_by_layer"][l] for l in s["layers"]},
+        "mass_grid": {str(l): s["mass_grid"][l] for l in s["layers"]},
+    } for s in samples]
+    with open(f"{OUT_DIR}/samples_metrics.json", "w", encoding="utf-8") as f:
+        json.dump({"personas": [c for c, _ in PERSONAS],
+                   "layers": samples[0]["layers"],
+                   "sandbox_seeds": SANDBOX_SEEDS[: args.n_seeds],
+                   "samples": metrics}, f, indent=1, ensure_ascii=False)
+    print(f"metrics -> {OUT_DIR}/samples_metrics.json")
     print(f"Done -> {OUT_DIR}/fig*.png, {OUT_DIR}/REPORT.md")
 
 
